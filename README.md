@@ -5,7 +5,7 @@ Das Pizzeria-Spiel von Paula Miltsch und Juliane Reimpell
 - [Spielidee](https://github.com/InformatikUnterrichtJ/Projektseite-2/blob/main/README.md#spielidee)
 - [Warum wir uns für Python entschieden haben](https://github.com/InformatikUnterrichtJ/Projektseite-2/blob/main/README.md#warum-wir-uns-f%C3%BCr-python-entschieden-haben)
 - [Aufbau des Spiels](https://github.com/InformatikUnterrichtJ/Projektseite-2/blob/main/README.md#aufbau-des-spiels)
-- [Fazit](
+- [Fazit](https://github.com/InformatikUnterrichtJ/Projektseite-2/blob/main/README.md#fazit)
 
 
 ### Spielidee
