@@ -16,7 +16,7 @@ Die Bestellung erschein in einer Sprechblase in der rechten unteren Ecke des Fen
 Nachdem wir uns beim letzten Mal für Scratch entschieden hatten und dies ein Block-Programmiersystem ist, mussten wir uns für diese Projekt neu orientieren. Da uns durch den ersten Versuch von physical computing immernoch bewusst war, dass wir nicht mit Arduino arbeiten wollen, haben wir uns nach Programmiersprachen für Computerspiele umgeschaut. Dabei sind wir schnell auf Java gestoßen, doch empfunden wir dieses als sehr unübersichtlich und wussten nicht genau wo wir anfangen sollen. Bei der Recherche über Java fiel uns dann Python in Kombination mit PyGame in die Arme. PyGame erschien uns weit aus schlüssiger und im Internet haben wir schnell hilfrecihe Tutorials gefunden. Auch erschien es uns geeignet, da es Funktionen wie eine Zufallsauswahl besitzt und es möglich ist eigene Bilder als Spielfiguren einzusetzen, sowie eine Maussteuerung zu programmieren.
 
 ### Aufbau des Spiels
-Das Spiel besteht aus dem Aufbau des Fensters, der Hauptschleife des Spiels, der Bestellung und den Spielfiguren, beziehungsweise den Zutaten. Der Code der einzelnen Spielfiguren ähnelt sich, da sie alle eine sehr ähnliche FUnktionen erfüllen.
+Das Spiel besteht aus dem Aufbau des Fensters, der Hauptschleife des Spiels, der Bestellung und den Spielfiguren, beziehungsweise den Zutaten. Der Code der einzelnen Spielfiguren ähnelt sich, da sie alle eine sehr ähnliche Funktionen erfüllen.
 
 Damit überhaupt mit den Begriffen von Python und PyGame gearbeitet werden kann, müssen diese zuerst installiert werden. Der Code beginnt also mit dieser Installierung.
 
