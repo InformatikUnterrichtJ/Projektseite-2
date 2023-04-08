@@ -13,7 +13,7 @@ Die Idee war ein Spiel zu entwickeln bei dem man eine Pizzeria besitzt und seine
 Die Bestellung erschein in einer Sprechblase in der rechten unteren Ecke des Fensters und beinhaltet den Namen der zu erstellenden Pizza. Der Spieler wählt dann die entsprechenden Zutaten aus der Reihe am oberen Rand des Fensters aus und zieht diese auf die Arrbeitsfläche. Auskunft über die zu kombinierenden Zutaten gibt eine Karte. Sind alle Zutaten richtig auf der Arbeitsfläche kombiniert, so wird eine neue Bestellung generiert und der Spieler muss erneut die Zutaten zusammenfügen.
 <details>
     <summary> Spieloberfläche </summary>
-    https://user-images.githubusercontent.com/111415429/230716482-fb37c4e6-c5c1-4655-a39a-3c55f2d0cb88.png
+    
         </details>
         
 ### Warum wir uns für Python entschieden haben
