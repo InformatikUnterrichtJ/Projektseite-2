@@ -66,7 +66,7 @@ Sprechblase = pygame.transform.scale(Sprechblase,(300,250))
 SprechblaseRect = Sprechblase.get_rect()
 SprechblaseRect = SprechblaseRect.move(0,500)
 ```
-Es folgen die Spielfiguren. Für diese wird zuerst das jeweilige Bild eingesetzt und anschließend werden sie alle auf die Größe 200x200 verkleinert. Anschließend wird festgelegt wie die Spielfiguren reagieren sollen, wenn mit ihnen interagiert wird. Hierbei wird festgelegt, dass die Spielfiguren sich zuerst kopieren, damit sie in der oberen Zutatenzeile erhalten bleiben und anschließend bei einer zugeordneten Position auf der Arbeitsfläche beliben, wenn diese dort hin bewegt werden. Der Code der Zutaten unterscheidet sich dehalb nur an den Koordinaten des Platzes auf der Arbeitsfläche und des Platzes in der Zutatenzeile.
+Es folgen die Spielfiguren. Für diese wird zuerst das jeweilige Bild eingesetzt und anschließend werden sie alle auf die Größe 200x200 verkleinert. Anschließend werden verschiedene Zustände der Spielfiguren festgelegt die sie einnehmen können wenn mit ihnen interagiert wird. Hierbei wird festgelegt, dass die Spielfiguren sich im Zusatand Rect2 kopieren, damit der Rect Zustand in der oberen Zutatenzeile erhalten bleibt und trotzdem ein clon mit der Mauus bewegt werden kann. Rect3 bestimmt den Platz auf dem die Zutaten auf der Arbeitsfläche stehen bleiben. Der Code der Zutaten unterscheidet sich dehalb nur an den Koordinaten des Platzes auf der Arbeitsfläche und des Platzes in der Zutatenzeile.
 
 ```ruby
 Teig = pygame.image.load("images/TeigT.png")
@@ -176,4 +176,92 @@ while spielaktiv:
                     reset()
                     FalschZähler = 250
 ```
+Die nächste Fallbedingung deckt die Schließung des Fensters ab. Sie besagt, dass bei der Schließung des Fensters, bzw. der Beendung von PyGame das Spiel beendet wird, also die Variable spielaktiv deaktiviert wird.
+```ruby
+elif event.type == pygame.QUIT:
+            spielaktiv = False
+```
+In der Folgenden Fallbedingung wird der Fall eines Mausklicks behandelt. Für die Maus gibt es zwei Zustände, einmal Maustaste gedrückt (MOUSBUTTONDOWN) und einmal Maustatste nicht gedrückt (MOUSBUTTENUP). Da wir die Maus zum Ziehen der Zutaten benutzten, ineressiert uns vor allem den Zustand MOUSBUTTONDOWN. Für diesen gilt, dass wenn die Maus sich auf den Koordinaten einer Zutat befindet während die Maustaste gedrückt wird, die Ziehen-Variable der Zutat aktiviert wird. Für den Fall MOUSBUTTONUP wird die Ziehen-Variable wieder deaktiviert.
+```ruby
+
+        elif event.type == pygame.MOUSEBUTTONDOWN:
+            MausPosition = pygame.mouse.get_pos()
+            if TeigRect.x <= MausPosition[0] and TeigRect.x+TeigRect.width >= MausPosition[0] and TeigRect.y <= MausPosition[1] and TeigRect.y+TeigRect.height >= MausPosition[1]:
+                ZiehenTeig = True
+            elif BasilikumRect.x <= MausPosition[0] and BasilikumRect.x+BasilikumRect.width >= MausPosition[0] and BasilikumRect.y <= MausPosition[1] and BasilikumRect.y+BasilikumRect.height >= MausPosition[1]:
+                ZiehenBasilikum = True
+            elif PilzRect.x <= MausPosition[0] and PilzRect.x + PilzRect.width >= MausPosition[0] and PilzRect.y <= MausPosition[1] and PilzRect.y + PilzRect.height >= MausPosition[1]:
+                ZiehenPilz = True
+            elif KäseRect.x <= MausPosition[0] and KäseRect.x + KäseRect.width >= MausPosition[0] and KäseRect.y <= MausPosition[1] and KäseRect.y + KäseRect.height >= MausPosition[1]:
+                ZiehenKäse = True
+            elif SalamiRect.x <= MausPosition[0] and SalamiRect.x + SalamiRect.width >= MausPosition[0] and SalamiRect.y <= MausPosition[1] and SalamiRect.y + SalamiRect.height >= MausPosition[1]:
+                ZiehenSalami = True
+            elif TomatensauceRect.x <= MausPosition[0] and TomatensauceRect.x + TomatensauceRect.width >= MausPosition[0] and TomatensauceRect.y <= MausPosition[1] and TomatensauceRect.y + TomatensauceRect.height >= MausPosition[1]:
+                ZiehenTomatensauce = True
+            elif MozarellaRect.x <= MausPosition[0] and MozarellaRect.x + MozarellaRect.width >= MausPosition[0] and MozarellaRect.y <= MausPosition[1] and MozarellaRect.y + MozarellaRect.height >= MausPosition[1]:
+                ZiehenMozarella = True
+
+        elif event.type == pygame.MOUSEBUTTONUP:
+            ZiehenTeig = False
+            ZiehenBasilikum = False
+            ZiehenPilz = False
+            ZiehenKäse = False
+            ZiehenSalami = False
+            ZiehenTomatensauce = False
+            ZiehenMozarella = False
+```
+Ist die Ziehen-Variable einer Zutat aktiviert, so ist sicher zu stellen, dass sich die Zutat mit der Maus mitbewegt. Für diesen Fall haben wir zu Beginn einen Rect2 Zustand erstellt, damit nun der Rect Zustand in der Zutatenzeile erhalten bleiben kann und ein Clon der Zutat durch die Maus bewegt wird. Damit der Rect2 Zustand sich beim bewegen der Maus immer mittig unter dieser befindet, sollen die Koordinaten nicht identisch zur Mausposition sein, sondern um 100 Pixel auf der x- und y-Achse verschoben. Da die Zutaten alle 200x200 Pixel groß sind, markiert der Punkt (100|100) genau die Mitte auf den Zutaten.
+Während die Zutaten gezogen werden, wird geprüft, ob sie sich auf den Koordinaten der Arbeitsfläche (Holzbrett) befinden. Ist dies der Fall wirde die Aktiv-variable der Zutat aktiviert und die Ziehen-variable deaktiviert.
+```ruby
+if ZiehenTeig == True:
+        MausPosition = pygame.mouse.get_pos()
+        TeigRect2.x = MausPosition[0]-100
+        TeigRect2.y = MausPosition[1]-100
+        if HolzbrettRect.x <= MausPosition[0] and HolzbrettRect.x+HolzbrettRect.width >= MausPosition[0] and HolzbrettRect.y <= MausPosition[1] and HolzbrettRect.y+HolzbrettRect.height >= MausPosition[1]:
+            TeigAktiv = True
+            ZiehenTeig = False
+    elif ZiehenBasilikum == True:
+        MausPosition = pygame.mouse.get_pos()
+        BasilikumRect2.x = MausPosition[0]-100
+        BasilikumRect2.y = MausPosition[1]-100
+        if HolzbrettRect.x <= MausPosition[0] and HolzbrettRect.x+HolzbrettRect.width >= MausPosition[0] and HolzbrettRect.y <= MausPosition[1] and HolzbrettRect.y+HolzbrettRect.height >= MausPosition[1]:
+            BasilikumAktiv = True
+            ZiehenBasilikum = False
+    elif ZiehenPilz == True:
+        MausPosition = pygame.mouse.get_pos()
+        PilzRect2.x = MausPosition[0] - 100
+        PilzRect2.y = MausPosition[1] - 100
+        if HolzbrettRect.x <= MausPosition[0] and HolzbrettRect.x + HolzbrettRect.width >= MausPosition[0] and HolzbrettRect.y <= MausPosition[1] and HolzbrettRect.y + HolzbrettRect.height >= MausPosition[1]:
+            PilzAktiv = True
+            ZiehenPilz = False
+    elif ZiehenKäse == True:
+        MausPosition = pygame.mouse.get_pos()
+        KäseRect2.x = MausPosition[0] - 100
+        KäseRect2.y = MausPosition[1] - 100
+        if HolzbrettRect.x <= MausPosition[0] and HolzbrettRect.x + HolzbrettRect.width >= MausPosition[0] and HolzbrettRect.y <= MausPosition[1] and HolzbrettRect.y + HolzbrettRect.height >= MausPosition[1]:
+            KäseAktiv = True
+            ZiehenKäse = False
+    elif ZiehenSalami == True:
+        MausPosition = pygame.mouse.get_pos()
+        SalamiRect2.x = MausPosition[0] - 100
+        SalamiRect2.y = MausPosition[1] - 100
+        if HolzbrettRect.x <= MausPosition[0] and HolzbrettRect.x + HolzbrettRect.width >= MausPosition[0] and HolzbrettRect.y <= MausPosition[1] and HolzbrettRect.y + HolzbrettRect.height >= MausPosition[1]:
+            SalamiAktiv = True
+            ZiehenSalami = False
+    elif ZiehenTomatensauce == True:
+        MausPosition = pygame.mouse.get_pos()
+        TomatensauceRect2.x = MausPosition[0] - 100
+        TomatensauceRect2.y = MausPosition[1] - 100
+        if HolzbrettRect.x <= MausPosition[0] and HolzbrettRect.x + HolzbrettRect.width >= MausPosition[0] and HolzbrettRect.y <= MausPosition[1] and HolzbrettRect.y + HolzbrettRect.height >= MausPosition[1]:
+            TomatensauceAktiv = True
+            ZiehenTomatensauce = False
+    elif ZiehenMozarella == True:
+        MausPosition = pygame.mouse.get_pos()
+        MozarellaRect2.x = MausPosition[0] - 100
+        MozarellaRect2.y = MausPosition[1] - 100
+        if HolzbrettRect.x <= MausPosition[0] and HolzbrettRect.x + HolzbrettRect.width >= MausPosition[0] and HolzbrettRect.y <= MausPosition[1] and HolzbrettRect.y + HolzbrettRect.height >= MausPosition[1]:
+            MozarellaAktiv = True
+            ZiehenMozarella = False
+```
+Das Holzbrett (die Arbeitsfläche) wird 
 ### Fazit
