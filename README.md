@@ -263,5 +263,72 @@ if ZiehenTeig == True:
             MozarellaAktiv = True
             ZiehenMozarella = False
 ```
-Das Holzbrett (die Arbeitsfläche) wird 
+Das Holzbrett (die Arbeitsfläche) wird unabhängig vom Rest des Fensters aktualisiert. Für dieses gilt, dass sobald eine Zutat aktiv ist ihr Rect3 Zustand gezeichnet wird. Der Rect3 Zustand beinhaltet bereits die Koordinaten, wo die Zutat platziert werden soll und muss dementsprechend nur eingesetzt werden.
+
+```ruby
+    fenster.blit(Hintergrundbild,Hintergrundbild.get_rect())
+    #Zeichnen hier
+    fenster.blit(Holzbrett, HolzbrettRect)
+    if TeigAktiv == True:
+        fenster.blit(Teig, TeigRect3)
+    if BasilikumAktiv == True:
+        fenster.blit(Basilikum, BasilikumRect3)
+    if PilzAktiv == True:
+        fenster.blit(Pilz, PilzRect3)
+    if KäseAktiv == True:
+        fenster.blit(Käse, KäseRect3)
+    if SalamiAktiv == True:
+        fenster.blit(Salami, SalamiRect3)
+    if TomatensauceAktiv == True:
+        fenster.blit(Tomatensauce, TomatensauceRect3)
+    if MozarellaAktiv == True:
+        fenster.blit(Mozarella, MozarellaRect3)
+```
+Für die Sprechblase gilt Ähnliches. Auch sie wird unabhängig aktualisiert. Sobald eine Nummer von eins bis vier zufällig ausgewählt worde, wird in dem Fenster auf der Position (40,500) der dazugehörige Pizzaname gezeigt. Dieser wurde zu Beginn unter dem Ausdruck MozerellaSurf, SalamiSurf, FunghiSurf oder MargheritaSurf festgelegt. Im Endeffekt bedeutet es, dass ein zufällig augewählter Pizzananme in der sprechblase erscheint.
+```ruby
+  #Sprechblase
+    fenster.blit(Sprechblase,SprechblaseRect)
+    if Bestellung == 1:
+        fenster.blit(MozarellaSurf,(40,550))
+    elif Bestellung == 2:
+        fenster.blit(SalamiSurf,(40,550))
+    elif Bestellung == 3:
+        fenster.blit(FunghiSurf, (40,550))
+    elif Bestellung == 4:
+        fenster.blit(MargheritaSurf, (40,550))
+```
+Damit der Spieler weiß, welche Zutaten zum Pizzaname gehören, haben wir noch eine Karte eingebaut, welche jedoch keine Interaktion besitzt. Und damit bei einer falschen Bestellung der Spieler auch Feedback bekommt, erscheint der zu Beginn unter "FalschSurf" feszgelete Satz, sobald der FalschZähler größer als Null ist, also eine Bestellung falsch abgeschlossen worden ist. 
+```ruby
+    #Karte
+    fenster.blit(Karte,KarteRect)
+
+    #Kunde unzufrieden
+    if FalschZähler > 0:
+        fenster.blit(FalschSurf,(400,300))
+```
+Auch die Zutaten in der Zutatenzeile sollen gezeichnet werden und während der aktiven Ziehen-Variable einer Zutat sollen der Rect2 Zustand dieser ebenfalls gezeichnet werden. Dies lässt sich ebenfalls mit der Fensteraktualisierung steuern. Die Zutatenzeile soll dauerhaft bestehen, weshalb hier keine Bedingung oder Interaktion eingesetzt werden und die Rect2 Zustände sollen nur unter der Bedingung, dass ihre Zieh-Variable aktiv ist zu sehen sein.
+```ruby
+fenster.blit(Teig,TeigRect)
+    fenster.blit(Basilikum, BasilikumRect)
+    fenster.blit(Pilz, PilzRect)
+    fenster.blit(Käse, KäseRect)
+    fenster.blit(Salami, SalamiRect)
+    fenster.blit(Tomatensauce, TomatensauceRect)
+    fenster.blit(Mozarella, MozarellaRect)
+
+    if ZiehenTeig == True:
+        fenster.blit(Teig,TeigRect2)
+    if ZiehenBasilikum == True:
+        fenster.blit(Basilikum,BasilikumRect2)
+    if ZiehenPilz == True:
+        fenster.blit(Pilz, PilzRect2)
+    if ZiehenKäse == True:
+        fenster.blit(Käse, KäseRect2)
+    if ZiehenSalami == True:
+        fenster.blit(Salami, SalamiRect2)
+    if ZiehenTomatensauce == True:
+        fenster.blit(Tomatensauce, TomatensauceRect2)
+    if ZiehenMozarella == True:
+        fenster.blit(Mozarella, MozarellaRect2)
+```
 ### Fazit
