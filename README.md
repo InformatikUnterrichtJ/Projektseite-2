@@ -62,7 +62,7 @@ Sprechblase = pygame.transform.scale(Sprechblase,(300,250))
 SprechblaseRect = Sprechblase.get_rect()
 SprechblaseRect = SprechblaseRect.move(0,500)
 ```
-Es folgen die Spielfiguren. Für diese wird zuerst das jeweilige Bild eingesetzt und anschließend werden sie alle auf die Größe 200x200 verkleinert. Anschließend wird festgelegt wie die Spielfiguren reagieren sollen, wenn mit ihnen interagiert wird. Hierbei wird festgelegt, dass die Spielfiguren sich zuerst kopieren, damit sie in der oberen Zutatenzeile erkalten bleiben und anschließend bei einer zugeordneten Position auf der Arbeitsfläche beliben, wenn diese dort hin bewegt werden. Der Code der Zutaten unterscheidet sich dehalb nur an den Koordinaten.
+Es folgen die Spielfiguren. Für diese wird zuerst das jeweilige Bild eingesetzt und anschließend werden sie alle auf die Größe 200x200 verkleinert. Anschließend wird festgelegt wie die Spielfiguren reagieren sollen, wenn mit ihnen interagiert wird. Hierbei wird festgelegt, dass die Spielfiguren sich zuerst kopieren, damit sie in der oberen Zutatenzeile erhalten bleiben und anschließend bei einer zugeordneten Position auf der Arbeitsfläche beliben, wenn diese dort hin bewegt werden. Der Code der Zutaten unterscheidet sich dehalb nur an den Koordinaten des Platzes auf der Arbeitsfläche und des Platzes in der Zutatenzeile.
 
 ```ruby
 Teig = pygame.image.load("images/TeigT.png")
@@ -113,4 +113,6 @@ MozarellaRect2 = MozarellaRect.copy()
 MozarellaRect3 = MozarellaRect.move(800,400)
 MozarellaRect = MozarellaRect.move(950,0)
 ```
+
+
 ### Fazit
