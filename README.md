@@ -9,18 +9,18 @@ Das Pizzeria-Spiel von Paula Miltsch und Juliane Reimpell
 
 
 ### Spielidee
-Die Idee war ein Spiel zu entwickeln bei dem man eine Pizzeria besitzt und seine Kunden bedient, die aus einer Auswahl Pizzen bestellen. "Bedienen" sollte in diesem Fall bedeuten, dass man die Pizza, je nachdem welche art bestellt wurde, mit den passenden Zutaten zubereitet.
-Die Bestellung erschein in einer Sprechblase in der rechten unteren Ecke des Fensters und beinhaltet den Namen der zu erstellenden Pizza. Der Spieler wählt dann die entsprechenden Zutaten aus der Reihe am oberen Rand des Fensters aus und zieht diese auf die Arrbeitsfläche. Auskunft über die zu kombinierenden Zutaten gibt eine Karte. Sind alle Zutaten richtig auf der Arbeitsfläche kombiniert, so wird eine neue Bestellung generiert und der Spieler muss erneut die Zutaten zusammenfügen.
+Die Idee war ein Spiel zu entwickeln bei dem man eine Pizzeria besitzt und seine Kunden bedient, die aus einer Auswahl Pizzen bestellen. "Bedienen" sollte in diesem Fall bedeuten, dass man die Pizza, je nachdem welche Art bestellt wurde, mit den passenden Zutaten zubereitet.
+Die Bestellung erscheint in einer Sprechblase in der rechten unteren Ecke des Fensters und beinhaltet den Namen der zu erstellenden Pizza. Der Spieler wählt dann die entsprechenden Zutaten aus der Reihe am oberen Rand des Fensters aus und zieht diese auf die Arrbeitsfläche. Auskunft über die zu kombinierenden Zutaten gibt eine Karte. Sind alle Zutaten richtig auf der Arbeitsfläche kombiniert, so wird eine neue Bestellung generiert und der Spieler muss erneut die Zutaten zusammenfügen.
 <details>
     <summary> Spieloberfläche </summary>
     ![screenshot](https://github.com/InformatikUnterrichtJ/Projektseite-2/blob/main/Screenshot.Startbildschirm.png)
         </details>
         
 ### Warum wir uns für Python entschieden haben
-Nachdem wir uns beim letzten Mal für Scratch entschieden hatten und dies ein Block-Programmiersystem ist, mussten wir uns für diese Projekt neu orientieren. Da uns durch den ersten Versuch von physical computing immernoch bewusst war, dass wir nicht mit Arduino arbeiten wollen, haben wir uns nach Programmiersprachen für Computerspiele umgeschaut. Dabei sind wir schnell auf Java gestoßen, doch empfunden wir dieses als sehr unübersichtlich und wussten nicht genau wo wir anfangen sollen. Bei der Recherche über Java fiel uns dann Python in Kombination mit PyGame in die Arme. PyGame erschien uns weit aus schlüssiger und im Internet haben wir schnell hilfrecihe Tutorials gefunden. Auch erschien es uns geeignet, da es Funktionen wie eine Zufallsauswahl besitzt und es möglich ist eigene Bilder als Spielfiguren einzusetzen, sowie eine Maussteuerung zu programmieren.
+Nachdem wir uns beim letzten Mal für Scratch entschieden hatten und dies ein Block-Programmiersystem ist, mussten wir uns für dieses Projekt neu orientieren. Da uns durch den ersten Versuch von physical computing immernoch bewusst war, dass wir nicht mit Arduino arbeiten wollen, haben wir uns nach Programmiersprachen für den Computer umgeschaut. Dabei sind wir schnell auf Java gestoßen, doch empfunden wir diese als sehr unübersichtlich und wussten nicht genau wo wir anfangen sollen. Bei der Recherche über Java fiel uns dann Python in Kombination mit PyGame in die Arme. PyGame erschien uns weit aus schlüssiger und im Internet haben wir schnell hilfrecihe Tutorials gefunden. Auch erschien es uns geeignet, da es Funktionen wie eine Zufallsauswahl besitzt und es möglich ist eigene Bilder als Spielfiguren einzusetzen, sowie eine Maussteuerung zu programmieren.
 
 ### Aufbau des Spiels
-Das Spiel besteht aus dem Aufbau des Fensters, der Hauptschleife des Spiels, der Bestellung und den Spielfiguren, beziehungsweise den Zutaten. Der Code der einzelnen Spielfiguren ähnelt sich, da sie alle eine sehr ähnliche Funktionen erfüllen.
+Für das Spiel muss zuerst der Grundaufbau mit allen Variablen, sowie Zähler und Zustandsformen festgelegt werden. Darauf folgt die Hauptschleife des Spiels und zuletzt muss noch die Zeichnung auf dem Bildschirm, beziehungweise die Darstellung programmiert werden.
 
 Damit überhaupt mit den Begriffen von Python und PyGame gearbeitet werden kann, müssen diese zuerst installiert werden. Der Code beginnt also mit dieser Installierung.
 
@@ -28,7 +28,7 @@ Damit überhaupt mit den Begriffen von Python und PyGame gearbeitet werden kann,
 import pygame
 import random
 ```
-Es folgt die Festlegung von Variablen wie beispielsweise die Frames per second (FPS) und die Farben Schwarz und Weiß. Da wir mir Bildern zur Darstellung vom Hintergrund und den Spielfiguren arbeiten, müssen keine weiteren Farben definiert werden. Außerdem wird die Variable "spielaktiv" erstellt und als wahr befunden. Diese wird später genutzt um das Spiel an geeigneter Stelle zu beenden. Zusätzlich wird noch ein Zähler eingesetzt, der Später dafür genutzt wird falsche Bestellungen zu erkennen und mit dem Satz "Der Kunde ist unzufrieden" in der Sprechblase zu reagieren. Darüberhinaus wird eine Schriftart für das Spiel definiert und diese den später in einer Sprechblase erscheinenden Pizzanamen und auch dem Satz "Der Kunde ist unzufrieden" zugeordnet, damit diese später auch in der entsprechenden Schrift erscheinen. Wir haben uns hierbei für "Comic Sans MS" entschieden.
+Es folgt die Festlegung von Variablen wie beispielsweise die Frames per second (FPS) und die Farben Schwarz und Weiß. Da wir mir Bildern zur Darstellung vom Hintergrund und den Spielfiguren arbeiten, müssen keine weiteren Farben definiert werden. Außerdem wird die Variable "spielaktiv" erstellt und als wahr befunden. Diese wird später genutzt um das Spiel an geeigneter Stelle zu beenden. Zusätzlich wird noch ein Zähler eingesetzt, der Später dafür genutzt wird falsche Bestellungen zu erkennen und mit dem Satz "Der Kunde ist unzufrieden" in der Sprechblase zu reagieren. Darüberhinaus wird eine Schriftart für das Spiel definiert und diese den im Laufe des Spiels in einer Sprechblase erscheinenden Pizzanamen und dem Satz "Der Kunde ist unzufrieden" zugeordnet, damit diese später in der entsprechenden Schrift erscheinen. Wir haben uns hierbei für "Comic Sans MS" entschieden.
 Zusätzlich müssen die Variabeln, die später angeben, dass ein Item bewegt wird, als falsch, also als inaktiv deklariert werden. Des Weiteren wird an dieser Stelle auch die Bestellung, als eine Zufallsgenererierung der Zahlen eins bis vier, erstellt.
 
 ```ruby
@@ -56,7 +56,7 @@ SalamiAktiv = False
 TomatensauceAktiv = False
 MozarellaAktiv = False
 ```
-Nun muss der Hintergrund des Fensters bestimmt werden. Hierzu haben wir ein Bild ausgewählt und mit diesem das ganze Fenster ausgefüllt. Zum Hintergrund gehört ebenfalls noch die Arbeitsfläche, die ebenfalls als BIld platziert wird, jedoch nur als eine Teilfläche des Fensters. Platziert werden die Bilder auf dem bereits im Hintergrund existierendem Koordinatensystem, welches ebenfalls die Skalierung ermöglicht. Als Letztes wird noch die Sprechblase zum Hintergrund hinzugefügt. Diese ist ebenfalls ein eingesetztes Bild.
+Nun muss der Hintergrund des Fensters bestimmt werden. Hierzu haben wir ein Bild ausgewählt und mit diesem das ganze Fenster ausgefüllt. Zum Hintergrund gehört ebenfalls noch die Arbeitsfläche (das Holzbrett), die ebenfalls als Bild eingesetzt wird, jedoch nur als eine Teilfläche des Fensters. Platziert werden die Bilder auf dem bereits im Hintergrund existierendem Koordinatensystem, welches ebenfalls die Skalierung ermöglicht. Als Letztes wird noch die Sprechblase zum Hintergrund hinzugefügt. Diese ist ebenfalls ein eingesetztes Bild.
 
 ```ruby
 Hintergrundbild = pygame.image.load("images/Hintergrundbild.jpg")
@@ -70,7 +70,7 @@ Sprechblase = pygame.transform.scale(Sprechblase,(300,250))
 SprechblaseRect = Sprechblase.get_rect()
 SprechblaseRect = SprechblaseRect.move(0,500)
 ```
-Es folgen die Spielfiguren. Für diese wird zuerst das jeweilige Bild eingesetzt und anschließend werden sie alle auf die Größe 200x200 verkleinert. Anschließend werden verschiedene Zustände der Spielfiguren festgelegt die sie einnehmen können wenn mit ihnen interagiert wird. Hierbei wird festgelegt, dass die Spielfiguren sich im Zusatand Rect2 kopieren, damit der Rect Zustand in der oberen Zutatenzeile erhalten bleibt und trotzdem ein clon mit der Mauus bewegt werden kann. Rect3 bestimmt den Platz auf dem die Zutaten auf der Arbeitsfläche stehen bleiben. Der Code der Zutaten unterscheidet sich dehalb nur an den Koordinaten des Platzes auf der Arbeitsfläche und des Platzes in der Zutatenzeile.
+Es folgen die Spielfiguren. Für diese wird zuerst das jeweilige Bild eingesetzt und anschließend werden sie alle auf die Größe 200x200 verkleinert. Dannach werden verschiedene Zustände der Spielfiguren festgelegt, die sie einnehmen können wenn mit ihnen interagiert wird. Hierbei wird festgelegt, dass die Spielfiguren sich im Zusatand Rect2 kopieren, damit der Rect Zustand später in der oberen Zutatenzeile erhalten bleibt und trotzdem ein Clon mit der Mauus bewegt werden kann. Rect3 bestimmt den Platz auf dem die Zutaten auf der Arbeitsfläche stehen bleiben. Dies gilt für alle Zutaten. Der Code der Zutaten unterscheidet sich dehalb nur an den Koordinaten des Platzes auf der Arbeitsfläche und des Platzes in der Zutatenzeile.
 
 ```ruby
 Teig = pygame.image.load("images/TeigT.png")
@@ -142,7 +142,7 @@ def reset():
     MozarellaAktiv = False
     Bestellung = random.randint(1, 4)
  ```
- Bevor die Hauptschleife endlich beginnen kann muss nun noch das Fenster indem das Spiel laufen wird erstellt werden. Da die Höhe und Weite bereits definiert worden, wird nun ein Fenster mit dieser Größe erstellt. zusätzlich wird diesem die Caption "Pizzeria" zugeordnet und die Zeit gestartet, damit die Frames per seconds eingessetzt werden können. Außerdem wird noch mit dem Ausdruck ```pygame.display.flip()``` ermöglicht, dass Teile des Fensters einzelnt aktualisiert werden können.
+ Bevor die Hauptschleife endlich beginnen kann muss nun noch das Fenster indem das Spiel laufen wird erstellt werden. Da die Höhe und Weite bereits definiert worde, wird nun ein Fenster mit dieser Größe erstellt. zusätzlich wird diesem die Caption "Pizzeria" zugeordnet und die Zeit wird gestartet, damit die Frames per seconds eingessetzt werden können. Außerdem wird noch mit dem Ausdruck ```pygame.display.flip()``` ermöglicht, dass Teile des Fensters einzelnt aktualisiert werden können.
  ```ruby
  fenster = pygame.display.set_mode((W, H))
 pygame.display.set_caption("Pizzeria")
@@ -153,9 +153,11 @@ pygame.display.flip()
 ```
     
  #### Hauptschleife
- Die Hauptschleife definiert den tatsächlichen Ablauf des Spiels und besteht aus vielen if- und elif-Schleifen. Beginnen tut sie mit der Aussage während die Variable spielaktiv wahr ist, soll alles folgende passieren. Somit kann über die Variable spielaktiv das Spiel später beendet werden.
- Bevor die Fallbedingungen der Schleife, die später das Verhalten in besetimmten Events bestimmen, beginnen wird zuerst noch geprüft, ob der FalschZähler größer als null ist, also eine Bestellung falsch war. Ist dies der Fall wird mit -1 vom Ausgangswert runtergezählt, bis dieser wieder bei Null ist.
- Die erste Fallbedingung widmet sich den Keyboardtasten. Sie besagt, dass wenn im Fall das eine Taste gedrückt wurde diese die Escapetaste war, die Variable spielaktiv deaktiviert wird und folglich das Spiel beendet wird oder wenn im Fall das eine Taste gedrückt wurde diese die Entertaste war, die Bestellungen, je nachdem welche nummer ausgewählt wurde, darauf geprüft werden, ob die richtigen Zutaten aktiv sind, also die Zutaten richtig ausgewählt worden. Ist dies der Fall gibt es einen Reset. Sollten jedoch falsche Zutaten ausgewählt worden sein und die Bestellung ist nun fehlerhaft, so wird der FalschZähler auf 250 gesetzt. Die Zahl 250 wurde deshalb gewählt, da es mit einem FPS von 100 genau zwei einhalb sekunden braucht, um von dort mit -1 runterzuzählen.
+ Die Hauptschleife definiert den tatsächlichen Ablauf des Spiels und besteht aus vielen if- und elif-Schleifen. Beginnen tut sie mit der Aussage während die Variable spielaktiv wahr ist, soll alles Folgende passieren. Somit kann über die Variable spielaktiv das Spiel später beendet werden.
+
+Bevor die Fallbedingungen der Schleife, die später das Verhalten in besetimmten Events bestimmen, beginnen wird zuerst noch geprüft, ob der FalschZähler größer als Null ist, also eine Bestellung falsch war. Ist dies der Fall wird mit -1 vom Ausgangswert runtergezählt, bis dieser wieder bei Null ist.
+ 
+ Die erste Fallbedingung widmet sich den Keyboardtasten. Sie besagt, dass wenn im Fall das eine Taste gedrückt wurde diese die Escapetaste war, die Variable spielaktiv deaktiviert wird und folglich das Spiel beendet wird oder wenn im Fall das eine Taste gedrückt wurde diese die Entertaste war, die Bestellungen darauf geprüft werden, ob die richtigen Zutaten je nach Bestellungsnummer aktiv sind, also die Zutaten richtig ausgewählt worden. Ist dies der Fall gibt es einen Reset. Sollten jedoch falsche Zutaten ausgewählt worden sein und die Bestellung ist nun fehlerhaft, so wird der FalschZähler auf 250 gesetzt. Die Zahl 250 wurde deshalb gewählt, da es mit einem FPS von 100 genau zwei einhalb Sekunden braucht, um von dort mit -1 runterzuzählen.
  ```ruby
  
 while spielaktiv:
@@ -185,7 +187,7 @@ Die nächste Fallbedingung deckt die Schließung des Fensters ab. Sie besagt, da
 elif event.type == pygame.QUIT:
             spielaktiv = False
 ```
-In der Folgenden Fallbedingung wird der Fall eines Mausklicks behandelt. Für die Maus gibt es zwei Zustände, einmal Maustaste gedrückt (MOUSBUTTONDOWN) und einmal Maustatste nicht gedrückt (MOUSBUTTENUP). Da wir die Maus zum Ziehen der Zutaten benutzten, ineressiert uns vor allem den Zustand MOUSBUTTONDOWN. Für diesen gilt, dass wenn die Maus sich auf den Koordinaten einer Zutat befindet während die Maustaste gedrückt wird, die Ziehen-Variable der Zutat aktiviert wird. Für den Fall MOUSBUTTONUP wird die Ziehen-Variable wieder deaktiviert.
+In der Folgenden Fallbedingung wird der Fall eines Mausklicks behandelt. Für die Maus gibt es zwei Zustände, einmal Maustaste gedrückt (MOUSBUTTONDOWN) und einmal Maustatste nicht gedrückt (MOUSBUTTENUP). Da wir die Maus zum Ziehen der Zutaten benutzten, ineressiert uns vor allem der Zustand MOUSBUTTONDOWN. Für diesen gilt, dass wenn die Maus sich auf den Koordinaten einer Zutat befindet während die Maustaste gedrückt wird, die Ziehen-Variable der Zutat aktiviert wird. Für den Fall MOUSBUTTONUP wird die Ziehen-Variable wieder deaktiviert.
 ```ruby
 
         elif event.type == pygame.MOUSEBUTTONDOWN:
@@ -215,7 +217,7 @@ In der Folgenden Fallbedingung wird der Fall eines Mausklicks behandelt. Für di
             ZiehenMozarella = False
 ```
 Ist die Ziehen-Variable einer Zutat aktiviert, so ist sicher zu stellen, dass sich die Zutat mit der Maus mitbewegt. Für diesen Fall haben wir zu Beginn einen Rect2 Zustand erstellt, damit nun der Rect Zustand in der Zutatenzeile erhalten bleiben kann und ein Clon der Zutat durch die Maus bewegt wird. Damit der Rect2 Zustand sich beim bewegen der Maus immer mittig unter dieser befindet, sollen die Koordinaten nicht identisch zur Mausposition sein, sondern um 100 Pixel auf der x- und y-Achse verschoben. Da die Zutaten alle 200x200 Pixel groß sind, markiert der Punkt (100|100) genau die Mitte auf den Zutaten.
-Während die Zutaten gezogen werden, wird geprüft, ob sie sich auf den Koordinaten der Arbeitsfläche (Holzbrett) befinden. Ist dies der Fall wirde die Aktiv-variable der Zutat aktiviert und die Ziehen-variable deaktiviert.
+Während die Zutaten gezogen werden, wird geprüft, ob sie sich auf den Koordinaten der Arbeitsfläche (Holzbrett) befinden. Ist dies der Fall wirde die Aktiv-Variable der Zutat aktiviert und die Ziehen-Variable deaktiviert.
 ```ruby
 if ZiehenTeig == True:
         MausPosition = pygame.mouse.get_pos()
@@ -288,7 +290,7 @@ Das Holzbrett (die Arbeitsfläche) wird unabhängig vom Rest des Fensters aktual
     if MozarellaAktiv == True:
         fenster.blit(Mozarella, MozarellaRect3)
 ```
-Für die Sprechblase gilt Ähnliches. Auch sie wird unabhängig aktualisiert. Sobald eine Nummer von eins bis vier zufällig ausgewählt worde, wird in dem Fenster auf der Position (40,500) der dazugehörige Pizzaname gezeigt. Dieser wurde zu Beginn unter dem Ausdruck MozerellaSurf, SalamiSurf, FunghiSurf oder MargheritaSurf festgelegt. Im Endeffekt bedeutet es, dass ein zufällig augewählter Pizzananme in der sprechblase erscheint.
+Für die Sprechblase gilt Ähnliches. Auch sie wird unabhängig aktualisiert. Sobald eine Nummer von eins bis vier zufällig ausgewählt worde, wird in dem Fenster auf der Position (40,500) der dazugehörige Pizzaname gezeigt. Dieser wurde zu Beginn unter dem Ausdruck MozerellaSurf, SalamiSurf, FunghiSurf oder MargheritaSurf festgelegt. Im Endeffekt bedeutet es, dass ein zufällig augewählter Pizzananme in der Sprechblase erscheint.
 ```ruby
   #Sprechblase
     fenster.blit(Sprechblase,SprechblaseRect)
@@ -301,7 +303,7 @@ Für die Sprechblase gilt Ähnliches. Auch sie wird unabhängig aktualisiert. So
     elif Bestellung == 4:
         fenster.blit(MargheritaSurf, (40,550))
 ```
-Damit der Spieler weiß, welche Zutaten zum Pizzaname gehören, haben wir noch eine Karte eingebaut, welche jedoch keine Interaktion besitzt. Und damit bei einer falschen Bestellung der Spieler auch Feedback bekommt, erscheint der zu Beginn unter "FalschSurf" feszgelete Satz, sobald der FalschZähler größer als Null ist, also eine Bestellung falsch abgeschlossen worden ist. 
+Damit der Spieler weiß, welche Zutaten zum Pizzaname gehören, haben wir noch eine Karte eingebaut, welche jedoch keine Interaktion besitzt. Und damit bei einer falschen Bestellung der Spieler auch Feedback bekommt, erscheint der zu Beginn unter "FalschSurf" festgelete Satz, sobald der FalschZähler größer als Null ist, also eine Bestellung falsch abgeschlossen wurde. 
 ```ruby
     #Karte
     fenster.blit(Karte,KarteRect)
@@ -336,5 +338,6 @@ fenster.blit(Teig,TeigRect)
         fenster.blit(Mozarella, MozarellaRect2)
 ```
 ### Fazit
-Das Projekt erforderte von uns, dass wir eine neue und weitaus kompliziertere Programmiersprache eigenständig erlernen, was auch bedeutet hat zuerst zu erkennen welche Strukturen wir für unser Spiel benötigen und welche Möglichkeiten wir mit der Programmiersprache besitzen. Wir mussten unsere Spielidee strukturell runterbrechen, um zu erkennen wo der kleinste Anhangspunkt ist mit dem zu starten war. Im Gegensatz zu unserem ersten Projekt mit Scratch hatte Python weitaus weniger hilfstruckturen und die genannten Kompetenzen mussten wir für dieses Projekt ausfindig machen und erlernen. Zu Beginn hatten wir uns zwar mehr für das Projekt erwünscht, doch angesicht der Komplexität, des erhöhten Arbeitsaufwandes und dem zur Verfügung gestellten, zeitlichen Rahmen, sind wir überaus zufrieden mit dem Ergebniss. Wir haben viele Kompetenzen erlernt, die auch in Zukunft durchaus nützlich sein können und besitzten nun ein gutes Grundverständnis über das tatsächliche programmieren.
-Sicherlich könnte man mit mehr Zeit die Bestellungen ausarbeiten und das Spiel ästetischer gestallten, wodurch das Projekt noch zufriedenstellender wäre. Insgesammt empfinden wir jedoch das Projekt, auch mit den bereits gemachten Verbesserungen im Fall einer falschen Bestellung und weiteren ästetischen Verbesserungen, als sehr gelungen und nehmen viel aus dieser Arbeitphase mit.
+Das Projekt erforderte von uns, dass wir eine neue und weitaus kompliziertere Programmiersprache eigenständig erlernen, was auch bedeutet hat zuerst zu erkennen welche Strukturen wir für unser Spiel benötigen und welche Möglichkeiten wir mit der Programmiersprache besitzen. Wir mussten unsere Spielidee strukturell runterbrechen, um zu erkennen wo der kleinste Anhangspunkt ist mit dem zu starten war. Im Gegensatz zu unserem ersten Projekt mit Scratch hatte Python weitaus weniger Hilfstruckturen und die genannten Kompetenzen mussten wir für dieses Projekt ausfindig machen und erlernen. Zu Beginn hatten wir uns zwar mehr für das Projekt erwünscht, doch angesicht der Komplexität, des erhöhten Arbeitsaufwandes und dem zur Verfügung gestellten, zeitlichen Rahmen, sind wir überaus zufrieden mit dem Ergebniss. Wir haben viele Kompetenzen erlernt, die auch in Zukunft durchaus nützlich sein können und besitzten nun ein gutes Grundverständnis über das tatsächliche Programmieren.
+
+Sicherlich könnte man mit mehr Zeit die Bestellungen ausarbeiten und das Spiel ästetischer gestallten, wodurch das Projekt noch zufriedenstellender wäre. Insgesammt empfinden wir jedoch das Projekt, auch mit den bereits gemachten Verbesserungen für den Fall einer falschen Bestellung und weiteren ästetischen Verbesserungen, als sehr gelungen und nehmen viel aus dieser Arbeitphase mit.
